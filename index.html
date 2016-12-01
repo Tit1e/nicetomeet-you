@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Document</title>
+    <style>
+    * {
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -khtml-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    color:#35495e;
+    }
+    button,input{
+      outline: none;
+    }
+    html,body{
+        height:100%;
+        width:100%;
+        overflow: hidden;
+        font-family: Arial;
+    }
+    body{
+        margin: 0;
+        position: relative;
+    }
+    #button{
+        display:flex;
+    }
+    #yes,#no{
+        flex-grow:1;
+        width: 150px;
+        height:50px;
+        margin:20px;
+        display: inline-block;
+        border: none;
+        outline: none;
+        color:#fff;
+        font-size: 18px;
+        border-radius: 5px;
+    }
+    #bgi{
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        background:rgba(0,0,0,0.8);
+        display: none;
+    }
+    #yes{
+        background-color:#41b883;
+    }
+    #no{
+        background-color: #35495e;
+    }
+    #talk{
+        text-align: center;
+        margin-top: 120px;
+    }
+    .upwin{
+        position: absolute;
+        width: 50%;
+        height: auto;
+        background-color: #fff;
+        padding:20px 40px;
+        left: 50%;
+        top:50%;
+        transform: translate(-50%,-50%);
+        margin:0 auto;
+        border:1px solid #aaa;
+        border-radius: 5px;
+        text-align: center;
+        display: none;
+    }
+    #upwin p{
+      margin: 5px;
+      text-align: center;
+    }
+    #upwin input{
+      width: 100%;
+      border: 0px;
+      border-bottom: 1px solid #999;
+      outline: none;
+      padding-left: 10px;
+    }
+    #addfriend{
+      background-color:#41b883;
+      border:0px solid;
+      padding:5px 10px;border-radius:3px;
+      color: #fff;
+      margin:0 auto;
+      margin-top: 20px;
+    }
+    #nicetomeetyou{
+      display: none;
+    }
+    #sorry{
+      display: none;
+    }
+    </style>
+</head>
+<body>
+    <div>
+        <h1 id="talk">我可以认识你吗？</h1>
+    </div>
+    <div id="button">
+        <button type="button" id="yes">可以</button>
+        <button type="button" id="no">不可以</button>
+    </div>
+    <div id="bgi">
+        <div class="upwin" id="upwin">
+            <p>那请输入你的QQ吧<br>~\(≧▽≦)/~</p>
+            <input type="number" name="" placeholder="不要骗我噢" id="qq">
+            <button id="addfriend">加好友去咯</button>
+        </div>
+        <div class="upwin" id="nicetomeetyou">
+            <p>很高兴认识你！！！<br>ヽ(○´∀`)ﾉ♪</p>
+        </div>
+        <div class="upwin" id="sorry">
+            <p>对不起打扰了T_T</p>
+        </div>
+    </div>
+    <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+    <script>
+    var yes_btn = document.getElementById("yes");
+    var no_btn = document.getElementById("no");
+    yes_btn.addEventListener("touchend",function(){
+      $("#bgi").fadeIn();
+      $("#upwin").fadeIn();
+    })
+    var n = 0;
+    no_btn.addEventListener("touchstart",function(){
+        no_btn.innerHTML = "可以";
+        no_btn.style.background = "#41b883";
+        yes_btn.innerHTML = "不可以";
+        yes_btn.style.background = "#35495e";
+        n +=1;
+        if(n>5){
+          $("#bgi").fadeIn();
+          $("#sorry").fadeIn();
+          var timer = setTimeout(function(){
+            $("#bgi").fadeOut();
+            $("#sorry").fadeOut();
+          },1000)
+        }
+    })
+    no_btn.addEventListener("touchend",function(){
+        no_btn.innerHTML = "不可以";
+        no_btn.style.background = "#35495e";
+        yes_btn.innerHTML = "可以";
+        yes_btn.style.background = "#41b883";
+    })
+
+
+    var addf = document.getElementById("addfriend");
+    var qq = document.getElementById("qq");
+    addf.addEventListener("touchend",function(){
+      var qq = document.getElementById("qq").value;
+      var upwin = $("#upwin");
+      var nice = $("#nicetomeetyou");
+      upwin.fadeOut();
+      nice.fadeIn();
+      var timer = setTimeout(function(){
+        location = "mqqwpa://im/chat?chat_type=wpa&uin=" + qq + "&version=1";
+        $("#bgi").fadeOut();
+        $("#nicetomeetyou").fadeOut();
+      },1000);
+    })
+    </script>
+</body>
+</html>
