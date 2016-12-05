@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Document</title>
+    <title>我可以认识你吗？</title>
     <style>
     * {
     -webkit-touch-callout:none;
@@ -88,7 +88,7 @@
         display: none;
     }
     #upwin p{
-      margin: 5px;
+      margin: 10px;
       text-align: center;
     }
     #upwin input{
@@ -97,6 +97,7 @@
       border-bottom: 1px solid #999;
       outline: none;
       padding-left: 10px;
+      font-size: 16px;
     }
     #addfriend{
       background-color:#41b883;
@@ -139,7 +140,7 @@
     <div id="fadeout">
     </div>
     <div id="talkDiv1">
-        <h1 id="talk">我可以认识你吗？</h1>
+        <h1 id="talk">我…可以认识你吗？</h1>
     </div>
     <div id="talkDiv2">
         <h1 id="talk2">抱歉，打扰了。</h1>
@@ -156,9 +157,9 @@
     </div>
     <div id="bgi">
         <div class="upwin" id="upwin">
-            <p>那请输入你的QQ吧</p>
-            <input type="number" name="" placeholder="不要骗我噢" id="qq">
-            <button id="addfriend">加好友去咯</button>
+            <p>请输入你的QQ</p>
+            <input type="number" name="" placeholder="" id="qq">
+            <button id="addfriend">去加好友</button>
         </div>
         <!-- <div class="upwin" id="nicetomeetyou">
             <p>很高兴认识你！！！<br>ヽ(○´∀`)ﾉ♪</p>
@@ -173,10 +174,10 @@
     var no_btn = document.getElementById("no");
     yes_btn.addEventListener("touchend",function(){
         $("#fadeout").fadeTo(1000,1);
-            $("#talkDiv3").fadeTo(1000,1);
-            $("#talkDiv2").fadeTo(1000,0);
-            $("#talkDiv1").fadeTo(1000,0);
-            $("#button").fadeTo(1000,0);
+        $("#talkDiv3").fadeTo(1000,1);
+        $("#talkDiv2").fadeTo(1000,0);
+        $("#talkDiv1").fadeTo(1000,0);
+        $("#button").fadeTo(1000,0);
         setTimeout(function(){
             $("#bgi").fadeIn(1000);
             $("#upwin").fadeIn(1000);
