@@ -1,33 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="stylesheet" type="text/css" href="/css/style.css" />
-    <title>恭賀新禧</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>我可以认识你吗？</title>
+    <style>
+    * {
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -khtml-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    color:#35495e;
+    /*color: #fff;*/
+    }
+    button,input{
+      outline: none;
+    }
+    html,body{
+        height:100%;
+        width:100%;
+        overflow: hidden;
+        font-family: Arial;
+    }
+    body{
+        background-image: url(wpz.jpg);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: 0px -50px;
+        margin: 0;
+        position: relative;
+    }
+    #button{
+        display:flex;
+        opacity: 0.4;
+    }
+    #yes,#no{
+        flex-grow:1;
+        width: 150px;
+        height:50px;
+        margin:20px;
+        display: inline-block;
+        /*border: none;*/
+        border:1px solid #fff;
+        outline: none;
+        color:#fff;
+        font-size: 18px;
+        border-radius: 5px;
+    }
+    #bgi{
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        background:rgba(0,0,0,0.8);
+        display: none;
+        color:#35495e;
+    }
+    #yes{
+        /*background-color:#41b883;*/
+        background-color: rgba(0,0,0,0);
+    }
+    #no{
+        /*background-color: #35495e;*/
+        background-color: rgba(0,0,0,0);
+    }
+    #talk,#talk2,#talk3,#talk4{
+        text-align: center;
+        margin-top: 120px;
+        color: rgba(255,255,255,0.4);
+    }
+    .upwin{
+        position: absolute;
+        width: 50%;
+        height: auto;
+        background-color: #fff;
+        padding:20px 40px;
+        left: 50%;
+        top:50%;
+        transform: translate(-50%,-50%);
+        margin:0 auto;
+        border:1px solid #aaa;
+        border-radius: 5px;
+        text-align: center;
+        display: none;
+    }
+    #upwin p{
+      margin: 10px;
+      text-align: center;
+    }
+    #upwin input{
+      width: 100%;
+      border: 0px;
+      border-bottom: 1px solid #999;
+      outline: none;
+      padding-left: 10px;
+      font-size: 16px;
+    }
+    #addfriend{
+      background-color:#41b883;
+      border:0px solid;
+      padding:5px 10px;border-radius:3px;
+      color: #fff;
+      margin:0 auto;
+      margin-top: 20px;
+    }
+    #nicetomeetyou{
+      display: none;
+    }
+    #sorry{
+      display: none;
+    }
+    #fadeout{
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        opacity: 0.5;
+        background-image:url(wpz.png);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: 0px -50px;
+        z-index: -1;
+    }
+    #talkDiv2,#talkDiv3,#talkDiv4{
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0px;
+        width: 100%;
+        opacity: 0;
+    }
+    </style>
 </head>
-
 <body>
-    <h1>恭贺新禧</h1>
-    <div class="pDiv">
-        <p id="p1">欢迎你来到这里。</p>
-        <p id="p2">也很高兴见到你。</p>
-        <p id="p3">在此祝你在新的一年里：</p>
-        <p id="p4">身体能健康，</p>
-        <p id="p5">家庭能和睦，</p>
-        <p id="p6">目标能完成，</p>
-        <p id="p7">事业能上升。</p>
-        <p id="p8">如果你和我一样，</p>
-        <p id="p9">是刚步入社会或即将步入社会白纸一样的青年，</p>
-        <p id="p10">下面的话送你也送我自己：</p>
-        <p id="content" class="paper"></p>
-        <p id="content2" class="via"></p>
-        <p id="content3"></p>
+    <div id="fadeout">
     </div>
-    <script src="js/jquery.js"></script>
-    <script src="js/l-byl.js"></script>
-    <script src="js/script.js"></script>
-</body>
+    <div id="talkDiv1">
+        <h1 id="talk">我…可以认识你吗？</h1>
+    </div>
+    <div id="talkDiv2">
+        <h1 id="talk2">抱歉，打扰了。</h1>
+    </div>
+    <div id="talkDiv3">
+        <h1 id="talk3">真的吗？</h1>
+    </div>
+    <div id="talkDiv4">
+        <h1 id="talk4">很高兴认识你。</h1>
+    </div>
+    <div id="button">
+        <button type="button" id="yes">可以</button>
+        <button type="button" id="no">不可以</button>
+    </div>
+    <div id="bgi">
+        <div class="upwin" id="upwin">
+            <p>请输入你的QQ</p>
+            <input type="number" name="" placeholder="" id="qq">
+            <button id="addfriend">去加好友</button>
+        </div>
+        <!-- <div class="upwin" id="nicetomeetyou">
+            <p>很高兴认识你！！！<br>ヽ(○´∀`)ﾉ♪</p>
+        </div> -->
+<!--         <div class="upwin" id="sorry">
+            <p>对不起打扰了T_T</p>
+        </div> -->
+    </div>
+    <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+    <script>
+    var yes_btn = document.getElementById("yes");
+    var no_btn = document.getElementById("no");
+    yes_btn.addEventListener("touchend",function(){
+        $("#fadeout").fadeTo(1000,1);
+        $("#talkDiv3").fadeTo(1000,1);
+        $("#talkDiv2").fadeTo(1000,0);
+        $("#talkDiv1").fadeTo(1000,0);
+        $("#button").fadeTo(1000,0);
+        setTimeout(function(){
+            $("#bgi").fadeIn(1000);
+            $("#upwin").fadeIn(1000);
+        },1000);
+    })
+    // no_btn.addEventListener("touchstart",function(){
+    //     no_btn.innerHTML = "可以";
+    //     // no_btn.style.background = "#41b883";
+    //     yes_btn.innerHTML = "不可以";
+    //     // yes_btn.style.background = "#35495e";
+    // })
+    no_btn.addEventListener("touchend",function(){
+        $("#fadeout").fadeTo(1000,0);
+        $("#talkDiv2").fadeTo(1000,1);
+        $("#talkDiv1").fadeTo(1000,0);
+        $("#button").fadeTo(1000,0);
+    })
 
+
+    var addf = document.getElementById("addfriend");
+    var qq = document.getElementById("qq");
+    addf.addEventListener("touchend",function(){
+      var qq = document.getElementById("qq").value;
+      var upwin = $("#upwin");
+      // var nice = $("#nicetomeetyou");
+      upwin.fadeOut(0);
+      $("#bgi").fadeOut(0);
+      // $("#nicetomeetyou").fadeOut(500);
+      $("#talkDiv4").fadeTo(1000,1);
+      $("#talkDiv3").fadeTo(1000,0);
+      $("#button").fadeTo(1000,0);
+      // nice.fadeIn(1000);
+      var timer = setTimeout(function(){
+        location = "mqqwpa://im/chat?chat_type=wpa&uin=" + qq + "&version=1";
+      },1000);
+    })
+    </script>
+</body>
 </html>
